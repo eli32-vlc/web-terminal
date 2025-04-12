@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     tini socat nginx unzip openssl openssh-client ca-certificates \
     wget screen curl && \
     # Install ttyd manually
-    wget https://github.com/tsl0922/ttyd/releases/download/1.6.0/ttyd-linux-amd64-1.6.0.tar.gz && \
+    wget https://github.com/tsl0922/ttyd/releases/download/1.6.0/ttyd_linux.x86_64 && \
     tar -xvzf ttyd-linux-amd64-1.6.0.tar.gz && \
     mv ttyd /usr/local/bin/ && \
     rm ttyd-linux-amd64-1.6.0.tar.gz && \
