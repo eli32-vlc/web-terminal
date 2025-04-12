@@ -1,5 +1,7 @@
 # web-terminal
 
+> Based off https://github.com/eli32-vlc/web-terminal with ubuntu support and Auth.
+
 ## What is this?
 This is a lightweight (~43MB) alpine based docker image that comes pre-packaged with 2 wonderful tools:
 * [ttyd](https://github.com/tsl0922/ttyd): is a simple command-line tool for sharing a terminal over the web, using WebSockets.
@@ -12,9 +14,8 @@ If you run this with docker option **--rm** (as bellow), keep in mind that docke
 
 ---
 # Multi-Arch
-This image supports the following architectures: linux/armv7, linux/arm64, linux/386 and linux/amd64.
+This image supports the following architectures: linux/amd64.
 
-This means you can get it running on your RaspberryPi!
 
 ---
 # Usage
@@ -150,7 +151,3 @@ ngrok is free but also has paid plans that allow custom domains, reserved tunnel
 ---
 ## Disclaimer
 * I am not affiliated in any way with ngrok.
-* This image comes with no warranty. Use it at your own risk.
-* I don't like Apple. Fuck off, fan-boys.
-* I don't like left-winged snowflakes. Fuck off, code-covenant. 
-* I will call my branches the old way. Long live **master**, fuck-off renaming.
