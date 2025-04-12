@@ -15,12 +15,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     echo "server { listen 80 default_server; root /var/www/html; location / { try_files \$uri /index.html; } }" > /etc/nginx/sites-available/default && \
     ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default && \
     echo "<html><head><title>Welcome to Nginx</title></head><body><h1>Nginx works!</h1></body></html>" > /var/www/html/index.html && \
-    # Install ngrok (amd64)
-    wget -q https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip && \
-    unzip ngrok-stable-linux-amd64.zip && \
-    mv ngrok /usr/local/bin/ngrok && \
-    rm ngrok-stable-linux-amd64.zip && \
-    echo "web_addr: 0.0.0.0:4040" > /root/ngrok.yml && \
     # Customize shell
     echo "export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" >> /etc/profile && \
     # Add fake poweroff alias
@@ -32,7 +26,7 @@ ENV TTYD_USER=admin
 ENV TTYD_PASS=admin
 
 # Expose web ports
-EXPOSE 7681 4040 80
+EXPOSE 7681 80
 
 # Entrypoint and CMD
 ENTRYPOINT ["/usr/bin/tini", "--"]
