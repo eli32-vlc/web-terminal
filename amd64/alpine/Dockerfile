@@ -1,7 +1,7 @@
 FROM alpine:3.13.5
 
 # Install tools using the distro package manager
-RUN apk add --no-cache tini ttyd socat nginx unzip openssl openssh ca-certificates && \
+RUN apk add --no-cache tini ttyd socat nginx unzip openssl openssh ca-certificates screen && \
     # Configure nginx
     echo "daemon off;" >> /etc/nginx/nginx.conf && \
     mkdir /run/nginx && \
