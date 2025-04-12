@@ -1,13 +1,14 @@
 FROM ubuntu:20.04
 
-ENV DEBIAN_FRONTEND=noninteractive
-
 # Install packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    tini ttyd socat nginx unzip openssl openssh-client ca-certificates \
+    tini socat nginx unzip openssl openssh-client ca-certificates \
     wget screen curl && \
-    # Clean up APT when done
-    apt-get clean && rm -rf /var/lib/apt/lists/* && \
+    # Install ttyd manually
+    wget https://github.com/tsl0922/ttyd/releases/download/1.6.0/ttyd-linux-amd64-1.6.0.tar.gz && \
+    tar -xvzf ttyd-linux-amd64-1.6.0.tar.gz && \
+    mv ttyd /usr/local/bin/ && \
+    rm ttyd-linux-amd64-1.6.0.tar.gz && \
     # Configure nginx
     echo "daemon off;" >> /etc/nginx/nginx.conf && \
     mkdir -p /run/nginx && \
@@ -30,11 +31,9 @@ ENV TINI_KILL_PROCESS_GROUP=1
 ENV TTYD_USER=admin
 ENV TTYD_PASS=admin
 
-# Expose necessary ports
+# Expose web ports
 EXPOSE 7681 4040 80
 
-# Use Tini as entrypoint
+# Entrypoint and CMD
 ENTRYPOINT ["/usr/bin/tini", "--"]
-
-# Default command
 CMD ["sh", "-c", "ttyd -s 3 -t titleFixed=/bin/sh -t rendererType=webgl -t disableLeaveAlert=true --credential ${TTYD_USER}:${TTYD_PASS} /bin/bash -i -l"]
